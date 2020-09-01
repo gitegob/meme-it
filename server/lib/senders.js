@@ -4,7 +4,7 @@ exports.sendSuccess = (res, status, data) => {
       data,
     });
   }
-  return res.status(status).send('Success');
+  return res.status(status).send({ message: 'Success' });
 };
 
 exports.sendError = (res, status, error) => res.status(status).json({
