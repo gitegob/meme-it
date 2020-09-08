@@ -1,12 +1,11 @@
-const debug = require('debug')('app:db');
 const mongoose = require('mongoose');
+const { debugDB: debug, debugError } = require('../config/debug.config');
 
 exports.connectDB = (app) => {
   const db = mongoose.connection;
   const ENV = app.get('env');
   let connectionString;
   if (ENV === 'test') {
-    debug(ENV);
     connectionString = process.env.MONGO_TEST_DB;
   } else if (ENV === 'development') {
     connectionString = process.env.MONGO_LOCAL_DB;
@@ -24,7 +23,7 @@ exports.connectDB = (app) => {
     })
     .catch((error) => {
       debug('Database Connection Failed');
-      debug(error);
+      debugError(error);
     });
-  db.on('error', (error) => { debug(error); });
+  db.on('error', (error) => { debugError(error); });
 };

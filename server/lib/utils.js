@@ -3,6 +3,10 @@ exports.mockData = {
     userName: 'test',
     password: 'test123',
   },
+  logInIncPwd: {
+    userName: 'test',
+    password: 'test1234',
+  },
   signUp2: {
     userName: 'test2',
     password: 'test123',
