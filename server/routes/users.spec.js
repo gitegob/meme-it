@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const mongoose = require('mongoose');
-// const debug = require('debug')('app:test:meme.spec');
 const User = require('../models/user.model');
 const Meme = require('../models/meme.model');
 const app = require('../app');
@@ -32,8 +31,14 @@ describe('User tests', () => {
     expect(res.body.data).toHaveProperty('token');
     done();
   });
-  it('POST/ should not login a non-existing user user', async (done) => {
+  it('POST/ should not login a non-existing user', async (done) => {
     const res = await request(app).post('/api/auth/login').send(mockData.signUp2);
+    expect(res.status).toEqual(401);
+    expect(res.body).toHaveProperty('error');
+    done();
+  });
+  it('POST/ should not login a user with incorrect password', async (done) => {
+    const res = await request(app).post('/api/auth/login').send(mockData.logInIncPwd);
     expect(res.status).toEqual(401);
     expect(res.body).toHaveProperty('error');
     done();

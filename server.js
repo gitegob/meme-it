@@ -1,6 +1,6 @@
-const debug = require('debug')('app:startup');
 const { config } = require('dotenv');
 const app = require('./server/app');
+const { debugApp: debug } = require('./server/config/debug.config');
 
 config();
 const port = process.env.PORT || 5000;

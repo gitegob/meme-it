@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const debug = require('debug')('app:meme.controller');
 const Meme = require('../models/meme.model');
 const { sendSuccess, sendError } = require('../lib/senders');
+const { debugError } = require('../config/debug.config');
 
 exports.createMeme = (req, res) => {
   const { meme } = req.body;
@@ -13,7 +13,7 @@ exports.createMeme = (req, res) => {
   newMeme.save().then((doc) => {
     sendSuccess(res, 201, doc);
   }).catch((error) => {
-    debug(error);
+    debugError(error);
     sendError(res, 500, error);
   });
 };
@@ -24,7 +24,7 @@ exports.getMemes = async (req, res) => {
     const memes = docs.map((doc) => ({ ...doc._doc, address: `${process.env.BASEURL}/api/memes/${doc._id}` }));
     sendSuccess(res, 200, { count: docs.length, memes });
   } catch (error) {
-    debug(error);
+    debugError(error);
     sendError(res, 500, error);
   }
 };
@@ -51,7 +51,7 @@ exports.deleteMeme = async (req, res) => {
       else sendError(res, 400, 'Delete failed, Try again');
     }
   } catch (error) {
-    debug(error);
+    debugError(error);
     sendError(res, 500, error);
   }
 };
@@ -68,7 +68,7 @@ exports.updateMeme = async (req, res) => {
       else sendError(res, 400, 'Update failed, Try again');
     }
   } catch (error) {
-    debug(error);
+    debugError(error);
     sendError(res, 500, error);
   }
 };

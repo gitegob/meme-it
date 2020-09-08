@@ -9,8 +9,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "DEBUG=app:* nodemon server.js",
-    "test": "DEBUG=app:test:* jest --coverage && coveralls < coverage/lcov.info",
-    "test:watch": "DEBUG=app:test:* jest"
+    "test": "DEBUG=app:test:* jest --coverage",
+    "test:watch": "DEBUG=app:test:* jest --watchAll",
+    "coverage": "coveralls < coverage/lcov.info"
   },
   "repository": {
     "type": "git",
