@@ -4,12 +4,13 @@
   "description": "A meme app with nodejs and mongodb",
   "main": "app.js",
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverage": true
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "DEBUG=app:* nodemon server.js",
-    "test": "DEBUG=app:test:* jest --coverage",
+    "start": "babel-node server.js",
+    "dev": "DEBUG=app:* nodemon --exec babel-node server.js",
+    "test": "jest",
     "test:watch": "DEBUG=app:test:* jest --watchAll",
     "coverage": "coveralls < coverage/lcov.info"
   },
@@ -27,6 +28,9 @@
     "url": "https://github.com/gitego-brian/meme-it/issues"
   },
   "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -37,6 +41,7 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "babel-jest": "^26.3.0",
     "coveralls": "^3.1.0",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",

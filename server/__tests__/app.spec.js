@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
-const request = require('supertest');
-const mongoose = require('mongoose');
-const app = require('./app');
+import request from 'supertest';
+import { connection } from 'mongoose';
+import app from '../app';
 
 describe('App tests', () => {
   afterAll(async (done) => {
-    mongoose.connection.close();
+    connection.close();
     done();
   });
   it('GET/ should send a welcome message', async (done) => {

@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const Meme = require('../models/meme.model');
-const { sendSuccess, sendError } = require('../lib/senders');
-const { debugError } = require('../config/debug.config');
+import { Types } from 'mongoose';
+import Meme from '../models/meme.model';
+import { sendSuccess, sendError } from '../helpers/senders';
+import { debugError } from '../config/debug.config';
 
-exports.createMeme = (req, res) => {
+export function createMeme(req, res) {
   const { meme } = req.body;
   const newMeme = new Meme({
-    _id: new mongoose.Types.ObjectId(),
+    _id: new Types.ObjectId(),
     author: req.payload._id,
     meme,
   });
@@ -16,9 +16,9 @@ exports.createMeme = (req, res) => {
     debugError(error);
     sendError(res, 500, error);
   });
-};
+}
 
-exports.getMemes = async (req, res) => {
+export async function getMemes(req, res) {
   try {
     const docs = await Meme.find().select('authorName meme _id').populate('author', 'userName');
     const memes = docs.map((doc) => ({ ...doc._doc, address: `${process.env.BASEURL}/api/memes/${doc._id}` }));
@@ -27,9 +27,9 @@ exports.getMemes = async (req, res) => {
     debugError(error);
     sendError(res, 500, error);
   }
-};
+}
 
-exports.getMeme = async (req, res) => {
+export async function getMeme(req, res) {
   const { id } = req.params;
   try {
     const doc = await Meme.findById(id).select('authorName meme _id').populate('author', 'userName');
@@ -38,9 +38,9 @@ exports.getMeme = async (req, res) => {
   } catch (error) {
     sendError(res, 500, error);
   }
-};
+}
 
-exports.deleteMeme = async (req, res) => {
+export async function deleteMeme(req, res) {
   const { id } = req.params;
   try {
     const doc = await Meme.findOne({ _id: id, author: req.payload._id });
@@ -54,9 +54,9 @@ exports.deleteMeme = async (req, res) => {
     debugError(error);
     sendError(res, 500, error);
   }
-};
+}
 
-exports.updateMeme = async (req, res) => {
+export async function updateMeme(req, res) {
   const { id } = req.params;
   try {
     const doc = await Meme.findOne({ _id: id, author: req.payload._id });
@@ -71,4 +71,4 @@ exports.updateMeme = async (req, res) => {
     debugError(error);
     sendError(res, 500, error);
   }
-};
+}

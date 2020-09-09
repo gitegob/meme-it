@@ -1,6 +1,6 @@
-const { config } = require('dotenv');
-const app = require('./server/app');
-const { debugApp: debug } = require('./server/config/debug.config');
+import { config } from 'dotenv';
+import app from './server/app';
+import { debugApp as debug } from './server/config/debug.config';
 
 config();
 const port = process.env.PORT || 5000;

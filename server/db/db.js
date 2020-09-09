@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const { debugDB: debug, debugError } = require('../config/debug.config');
+import mongoose from 'mongoose';
+import { debugDB as debug, debugError } from '../config/debug.config';
 
-exports.connectDB = (app) => {
+export default (app) => {
   const db = mongoose.connection;
   const ENV = app.get('env');
   let connectionString;

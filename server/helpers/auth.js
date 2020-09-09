@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
+import { sign, verify } from 'jsonwebtoken';
 
-exports.generateToken = ({
+export function generateToken({
   _id, userName,
-}) => jwt.sign({ _id, userName }, process.env.JWT_KEY, { expiresIn: '5h' });
+}) { return sign({ _id, userName }, process.env.JWT_KEY, { expiresIn: '5h' }); }
 
-exports.verifyToken = (token) => jwt.verify(token, process.env.JWT_KEY);
+export function verifyToken(token) { return verify(token, process.env.JWT_KEY); }
