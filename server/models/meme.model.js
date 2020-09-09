@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const memeSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  author: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+const memeSchema = Schema({
+  _id: Schema.Types.ObjectId,
+  author: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
   meme: { type: String, required: true },
 });
 
-module.exports = mongoose.model('Meme', memeSchema);
+export default model('Meme', memeSchema);

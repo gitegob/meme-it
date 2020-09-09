@@ -1,10 +1,10 @@
-const express = require('express');
-const {
+import { Router } from 'express';
+import {
   getMemes, getMeme, createMeme, updateMeme, deleteMeme,
-} = require('../controllers/meme.controller');
-const { auth } = require('../middleware/auth');
+} from '../controllers/meme.controller';
+import auth from '../middleware/auth';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', getMemes);
 router.get('/:id', getMeme);
@@ -12,4 +12,4 @@ router.post('/', auth, createMeme);
 router.patch('/:id', auth, updateMeme);
 router.delete('/:id', auth, deleteMeme);
 
-module.exports = router;
+export default router;

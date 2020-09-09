@@ -1,4 +1,4 @@
-exports.mockData = {
+export default {
   signUp: {
     userName: 'test',
     password: 'test123',

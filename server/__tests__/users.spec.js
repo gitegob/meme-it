@@ -1,15 +1,16 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
-const request = require('supertest');
-const mongoose = require('mongoose');
-const User = require('../models/user.model');
-const Meme = require('../models/meme.model');
-const app = require('../app');
-const { mockData } = require('../lib/utils');
+import request from 'supertest';
+import mongoose from 'mongoose';
+import User from '../models/user.model';
+import Meme from '../models/meme.model';
+import app from '../app';
+import mockData from '../helpers/utils';
 
 describe('User tests', () => {
   afterAll(async (done) => {
-    await User.deleteMany({});
     await Meme.deleteMany({});
+    await User.deleteMany({});
     mongoose.connection.close();
     done();
   });

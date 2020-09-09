@@ -1,9 +1,9 @@
-const debug = require('debug');
+import debug from 'debug';
 
-exports.debugApp = debug('app:startup');
-exports.debugDB = debug('app:db');
-exports.debugError = debug('app:error');
-exports.debugMemeCont = debug('app:meme.controller');
-exports.debugUserCont = debug('app:user.controller');
-exports.debugMemeTest = debug('app:test:meme.spec');
-exports.debugUserTest = debug('app:test:user.spec');
+export const debugApp = debug('app:startup');
+export const debugDB = debug('app:db');
+export const debugError = debug('app:error');
+export const debugMemeCont = debug('app:meme.controller');
+export const debugUserCont = debug('app:user.controller');
+export const debugMemeTest = debug('app:test:meme.spec');
+export const debugUserTest = debug('app:test:user.spec');

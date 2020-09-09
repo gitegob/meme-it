@@ -1,7 +1,7 @@
 const { verifyToken } = require('../helpers/auth');
-const { sendError } = require('../lib/senders');
+const { sendError } = require('../helpers/senders');
 
-exports.auth = (req, res, next) => {
+export default (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) sendError(res, 401, 'Please log in first');
   else {
