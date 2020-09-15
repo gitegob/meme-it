@@ -22,7 +22,7 @@ export default (app) => {
       debug(`Database connected to ${connectionString}...`);
     })
     .catch((error) => {
-      debug('Database Connection Failed');
+      debugError('Database Connection Failed');
       debugError(error);
     });
   db.on('error', (error) => { debugError(error); });
