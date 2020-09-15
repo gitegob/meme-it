@@ -8,7 +8,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "start": "babel-node server.js",
+    "start": "DEBUG=app:db,app:error babel-node server.js",
     "dev": "DEBUG=app:* nodemon --exec babel-node server.js",
     "test": "jest",
     "test:watch": "DEBUG=app:test:* jest --watchAll",
